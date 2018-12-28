@@ -1,0 +1,62 @@
+<head>
+  <title>note</title>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+</head>
+
+<body>
+
+  <nav>
+    <div class="nav-wrapper container">
+      <a href="#" class="brand-logo">Notes List</a>
+      <ul id="nav-mobile" class="right hide-on-med-and-down">
+        {{#if currentUser}}
+        <li>
+          <a class="waves-effect waves-light btn modal-trigger" href="#addNotes">Add Notes</a>
+        </li>
+        {{/if}}
+        <li class="nav-item">
+          {{>loginButtons}}
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="container">
+    <h1>Welcome to Meteor!</h1>
+    {{#if currentUser}}
+    <ul class="collection">
+      {{#each notes}}
+      {{> note}}
+      {{/each}}
+    </ul>
+    {{else}}<p>Please Login or Registry</p>
+    {{/if}}
+  </div>
+
+  {{> modal}}
+
+  <script>
+
+  </script>
+
+</body>
+
+<template name="note">
+  <li class="collection-item">
+    {{text}}: added by<strong> {{userName}}</strong>
+    <a href="#" class="secondary-content delete-note"><i class="material-icons">close</i></a>
+  </li>
+</template>
+
+<template name="modal">
+  <div id="addNotes" class="modal">
+    <div class="modal-content">
+      <h3>Add Note</h3>
+      <form class="form-add-note">
+        <input type="text" class="" name="input" placeholder="Add Note....">
+        <!-- <button class="send-btn btn-small button" type="submit">Send</button> -->
+      </form>
+    </div>
+  </div>
+</template>
